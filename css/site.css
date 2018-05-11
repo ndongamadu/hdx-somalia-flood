@@ -1,0 +1,85 @@
+body, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Helvetica Neue';
+    font-weight: 350;
+}
+
+body { 
+    padding-top: 60px;
+}
+
+h3 {
+    font-size: 20px;
+    text-decoration: underline ;
+}
+.navbar {
+    background-color: #096DB4;
+    margin-bottom: 0px;
+
+}
+
+.navbar-header {
+    width: 100%;
+}
+
+#title {
+    font-size: 24px;
+    color: white;
+}
+
+.date_update span {
+    font-size: 18px;
+    color: #E7AD80;
+}
+
+#map {
+    width:100%;
+    height: 600px;
+}
+
+.hdx-3w-info{
+    background-color: white;
+    font-size: 1.5em;
+}
+
+.d3-tip {
+    padding: 5px;
+    background-color: white;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.keyfigure {
+    font-size: 20px;
+    color: #096DB4;
+}
+
+.keyfigureTitle {
+    font-size: 15px;
+    color: #E7AD80;
+}
+.description p{
+    font-size: 14px;
+    text-align: justify;
+}
+
+.charts {
+    padding-left: 0px;
+}
+
+.dc-chart g.row text {
+    fill: #4d4d4d;
+    font-size: 1.0em;
+}
+
+.dc-table-label{
+    color:#fff;
+}
+
+#data-table td, th{
+    font-size: 19px;
+}
+#data-table th{
+    font-size: 21px;
+}
