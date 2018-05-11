@@ -45,7 +45,7 @@ var barColor = '#CC6869';//'#096DB4';
 var blue = '#096DB4';
 var blueLight = '#72B0E0';
 var green = '#06C0B4';
-var mapColors =['#C1D2FB',mapColor,'#6FA3EA','#DDDDDD'];
+var mapColors =[mapColor,'#6FA3EA','#DDDDDD'];
 var formatComma = d3.format(',');
 
 function updateDescription (data) {
@@ -170,11 +170,9 @@ function generateCharts (data, geom, reachedData) {
         .colors(mapColors)
         .colorDomain([0, 3])
         .colorAccessor(function (d) {
-            var c = 3;
-            if (d > 200000) {
+            var c = 2;
+            if (d > 1000) {
                 c = 0;
-            } else if (d > 50000) {
-                c = 2;
             } else if (d > 0) {
                 c = 1;
             };
