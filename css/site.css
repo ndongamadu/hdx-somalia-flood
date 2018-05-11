@@ -10,6 +10,12 @@ body {
 h3 {
     font-size: 20px;
     text-decoration: underline ;
+    color: #D32F2F;
+}
+
+h4 {
+    color: #D32F2F;
+    text-decoration: underline ;
 }
 .navbar {
     background-color: #096DB4;
@@ -52,12 +58,13 @@ h3 {
 
 .keyfigure {
     font-size: 20px;
-    color: #096DB4;
+    color: #D32F2F;
 }
 
 .keyfigureTitle {
     font-size: 15px;
-    color: #E7AD80;
+    font-weight: 100px;
+/*    color: #D32F2F;*/
 }
 .description p{
     font-size: 14px;
@@ -83,4 +90,7 @@ h3 {
 }
 #data-table th{
     font-size: 21px;
+}
+a {
+    color: #D32F2F;
 }

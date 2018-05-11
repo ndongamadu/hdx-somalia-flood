@@ -40,11 +40,12 @@ function print_filter(filter) {
     console.log(filter + "(" + f.length + ") = " + JSON.stringify(f).replace("[", "[\n\t").replace(/}\,/g, "},\n\t").replace("]", "\n]"));
 }
 
-var barColor = '#096DB4';
+var mapColor = '#D32F2F';
+var barColor = '#CC6869';//'#096DB4';
 var blue = '#096DB4';
 var blueLight = '#72B0E0';
 var green = '#06C0B4';
-var mapColors =['#C1D2FB',blue,'#6FA3EA','#DDDDDD'];
+var mapColors =['#C1D2FB',mapColor,'#6FA3EA','#DDDDDD'];
 var formatComma = d3.format(',');
 
 function updateDescription (data) {
@@ -226,7 +227,7 @@ function generateCharts (data, geom, reachedData) {
     d3.selectAll('g.row').on('mouseover', rowtip.show).on('mouseout', rowtip.hide);
     
     d3.selectAll('.bar').call(bartip);
-    d3.selectAll('.bar').on('mouseover', bartip.show).on('mouseout', rowtip.hide);
+    d3.selectAll('.bar').on('mouseover', bartip.show).on('mouseout', bartip.hide);
     
     var map = whereChart.map();
     zoomToGeom(geom);
