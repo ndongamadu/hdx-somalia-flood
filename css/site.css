@@ -65,7 +65,8 @@ h3 {
 }
 
 .charts {
-    padding-left: 0px;
+/*    padding-left: 0px;*/
+    width: 100%;
 }
 
 .dc-chart g.row text {
