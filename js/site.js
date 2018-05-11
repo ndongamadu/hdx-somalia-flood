@@ -137,11 +137,12 @@ function generateCharts (data, geom, reachedData) {
         .group(groupState)
         .colors(barColor)
         .gap(2)
-        .elasticX(true)
+        .elasticY(true)
         .x(d3.scale.ordinal())
         .xUnits(dc.units.ordinal)
         .renderHorizontalGridLines(true)
-        .xAxis().ticks(0);
+//        .xAxis().ticks(0)
+        .yAxis().tickFormat(d3.format('.3s'));
 
     regionChart
         .width(600)
