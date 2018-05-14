@@ -50,7 +50,7 @@ var formatComma = d3.format(',');
 
 function updateDescription (data) {
     $('.description p').text(data[0]['#meta+description'])
-    $('.date_update h2 span').text("( issued on "+data[0]['#date']+" )");
+    $('.date_update h2 span').text("(as of "+data[0]['#date']+" )");
 } //end of updateDescription
 
 
