@@ -182,7 +182,7 @@ function generateCharts (data, geom, reachedData) {
         .featureKeyAccessor(function (feature) {
             return feature.properties['DIS_CODE'];
         }).popup(function (feature) {
-            var text = lookup[feature.key] +'<br>'+feature.value+' People affected';
+            var text = lookup[feature.key] +'<br>'+formatComma(feature.value)+' People affected';
             return text;
         })
         .renderPopup(true);
