@@ -203,9 +203,11 @@ function generateCharts (data, geom) {
         var totalDisplacedAccessor = function(d) { return d.totalDisplaced ;} ;
 
     displayTotalAffected
+        .formatNumber(formatComma)
         .group(groupALL)
         .valueAccessor(totalAffectedAccessor);
     displayTotalDisplaced
+        .formatNumber(formatComma)
         .group(groupALL)
         .valueAccessor(totalDisplacedAccessor);
 
@@ -264,14 +266,19 @@ function generateResponseCharts (data) {
         healthArr = [],
         nutritionArr = [],
         shelterArr = [],
-        washArr = [];
+        washArr = [],
+        educationArr = [],
+        cccmArr = [];
 
     for (var i = 0; i < grp.length; i++) {
         grp[i].key[0]== 'Food Security'? foodSecurityArr.push([grp[i].key[1],grp[i].value]) :
         grp[i].key[0]== 'Health'? healthArr.push([grp[i].key[1],grp[i].value]) :
         grp[i].key[0]== 'Nutrition'? nutritionArr.push([grp[i].key[1],grp[i].value]) :
         grp[i].key[0]== 'Shelter'? shelterArr.push([grp[i].key[1],grp[i].value]) :
-        grp[i].key[0]== 'WASH'? washArr.push([grp[i].key[1],grp[i].value]) : '';
+        grp[i].key[0]== 'WASH'? washArr.push([grp[i].key[1],grp[i].value]) :
+        grp[i].key[0]== 'Education'? educationArr.push([grp[i].key[1],grp[i].value]) :
+        grp[i].key[0]== 'CCCM'? cccmArr.push([grp[i].key[1],grp[i].value]) : '';
+
     }
     // var keyArr =[]; 
     // for (var i = 0; i < grpCluster.length; i++) {
@@ -284,6 +291,8 @@ function generateResponseCharts (data) {
     mapping['nutrition'] = {'data': nutritionArr, 'title': "Nutrition"};
     mapping['shelter'] = {'data': shelterArr, 'title': "Shelter"};
     mapping['wash'] = {'data': shelterArr, 'title': "WASH"};
+    mapping['education'] = {'data': educationArr, 'title': "Education"};
+    mapping['cccm'] = {'data': cccmArr, 'title': "CCCM"};
 
     $('#clusterCharts').html(' ');
 
@@ -309,10 +318,10 @@ function generateResponseCharts (data) {
                 }
             },
             size: {
-                height: 350
+                height: 300
             },
             color:{
-                pattern:["#fef0d9","#fdcc8a","#fc8d59","#e34a33","#D32F2F"] //["#edf8e9","#bae4b3","#74c476","#31a354","#006d2c"]
+                pattern:['#3F75B0','#D7DCE3','#DFEBF6','#AEB9C8','#A2C2E3','#6FA3EA']//["#fef0d9","#fdcc8a","#fc8d59","#e34a33","#D32F2F"] //["#edf8e9","#bae4b3","#74c476","#31a354","#006d2c"]
             },
             bar: {
                 width: {
