@@ -6,10 +6,12 @@
 		<meta charset="UTF-8">
 	    <link rel="stylesheet" href="css/bootstrap.min.css">
 	    <link rel="stylesheet" type="text/css" href="css/dc.css" />
+	    <link rel="stylesheet" type="text/css" href="css/c3.css" />
 	    <link rel="stylesheet" type="text/css" href="css/site.css" />
 	    <link rel="stylesheet" type="text/css" href="css/leaflet.css" />   	
 	    <script src="js/jquery.js"></script>
 	    <script src="js/d3.min.js"></script>
+	    <script src="js/c3.min.js"></script>
 	    <script src="js/d3.tip.min.js"></script>
 	    <script src="js/crossfilter.js"></script>
 	    <script src="js/dc.js"></script>
@@ -61,7 +63,7 @@
                     <span class="small disclaimer">The boundaries and names shown and the designations used on this map do not imply official endorsement or acceptance by the United Nations.</span>
 				</div>
 			</div>
-            <div class="row">
+<!--             <div class="row">
                 <h4>Flood response : Number of people reached by cluster</h4>
                     <table class="table table-hover" id="data-table">
                         <thead>
@@ -72,6 +74,10 @@
                             </tr>
                         </thead>
                     </table>
+            </div> -->
+            <div class="row">
+                <h4>Flood response : Number of people reached by cluster</h4>
+				<div id="clusterCharts"></div>
             </div>
 		</div><!-- fin container -->
 		<script src="js/site.js"></script>

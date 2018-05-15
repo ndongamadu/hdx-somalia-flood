@@ -117,3 +117,13 @@ a {
     padding-top: 5px;
     text-decoration: underline;
 }
+#clusterCharts h4{
+    /*text-align: center;*/
+    text-decoration: none;
+    font-size: 20x;
+    color:#D32F2F;
+}
+
+#clusterCharts col-md-4{
+    border-right: 1px solid;
+}

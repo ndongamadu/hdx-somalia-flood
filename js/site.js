@@ -59,29 +59,25 @@ function checkIntData(d){
 }
 var formatComma = d3.format(',');
 
-function generateCharts (data, geom, reachedData) {
+function generateCharts (data, geom) {
 
     data.forEach(function(d){
         d['#affected'] = checkIntData(d['#affected']);
         d['#affected+displaced'] = checkIntData(d['#affected+displaced']);
         d['#population'] = checkIntData(d['#population']);
     });
-    reachedData.forEach(function(d){
-        d['#reached'] = checkIntData(d['#reached']);
-    });
+    // reachedData.forEach(function(d){
+    //     d['#reached'] = checkIntData(d['#reached']);
+    // });
     var lookup = genLookup(geom);
 
     var cf = crossfilter(data);
-    var reached = crossfilter(reachedData);
+    // var reached = crossfilter(reachedData);
 
-    var dimTable = reached.dimension(function(d){ 
-        return d['#reached']; 
-    });
-    var gpTable = dimTable.groupAll();
-    // .reduceSum(function(d){
-    //     return d['#reached'];
+    // var dimTable = reached.dimension(function(d){ 
+    //     return d['#reached']; 
     // });
-    // console.log(reachedData)
+    // var gpTable = dimTable.groupAll();
 
     var stateChart = dc.barChart('#stateChart');
     var regionChart = dc.rowChart('#regionChart');
@@ -187,21 +183,21 @@ function generateCharts (data, geom, reachedData) {
         })
         .renderPopup(true);
 
-    dc.dataTable('#data-table')
-        .dimension(dimTable)
-        .group(function(d){
-            return 0;
-        })
-        .ordering(function(d){ return -d.value;})
-        .size(20)
-        .columns([
-            function(d){ return d['#region+name'] },
-            function(d){ return d['#sector+name']},
-            function(d){ return formatComma(d['#reached']) }
-        ])
-        .sortBy(function(d){
-            return d['#region+name'];
-        });
+    // dc.dataTable('#data-table')
+    //     .dimension(dimTable)
+    //     .group(function(d){
+    //         return 0;
+    //     })
+    //     .ordering(function(d){ return -d.value;})
+    //     .size(20)
+    //     .columns([
+    //         function(d){ return d['#region+name'] },
+    //         function(d){ return d['#sector+name']},
+    //         function(d){ return formatComma(d['#reached']) }
+    //     ])
+    //     .sortBy(function(d){
+    //         return d['#region+name'];
+    //     });
 
         var totalAffectedAccessor = function(d) { return d.totalAffected ;} ;
         var totalDisplacedAccessor = function(d) { return d.totalDisplaced ;} ;
@@ -238,10 +234,6 @@ function generateCharts (data, geom, reachedData) {
                     [8, 50.1],
                     [1.5, 43] 
                     ];
-        // map.fitBounds([
-        //     [bounds[0][1], bounds[0][0]],bbox=38.34228515625001%2C1.2413579498795726%2C52.53662109375001%2C10.671404468527449
-        //     [bounds[1][1], bounds[1][0]] <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=38.34228515625001%2C1.2413579498795726%2C52.53662109375001%2C10.671404468527449&amp;layer=mapnik" style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/#map=7/5.977/45.439">View Larger Map</a></small>
-        // ]);
         map.fitBounds(bnds);
     }
     function genLookup(geojson) {
@@ -253,6 +245,85 @@ function generateCharts (data, geom, reachedData) {
     }
 
 } //end of generateCharts
+
+var sortData = function (d1, d2) {
+    if (d1.key > d2.key) return 1;
+    if (d1.key < d2.key) return -1;
+    return 0;
+};
+
+function generateResponseCharts (data) {
+    var cf = crossfilter(data) ;
+    var dim = cf.dimension(function(d){ return [d['#sector+name'], d['#region+name']]; });
+    // var dimCluster = cf.dimension(function(d){ return d['#sector+name']; });
+
+    var grp = dim.group().reduceSum(function(d){ return d['#reached']; }).top(Infinity).sort(sortData);
+    // var grpCluster = dimCluster.group().top(Infinity).sort(sortData);;
+
+    var foodSecurityArr = [],
+        healthArr = [],
+        nutritionArr = [],
+        shelterArr = [],
+        washArr = [];
+
+    for (var i = 0; i < grp.length; i++) {
+        grp[i].key[0]== 'Food Security'? foodSecurityArr.push([grp[i].key[1],grp[i].value]) :
+        grp[i].key[0]== 'Health'? healthArr.push([grp[i].key[1],grp[i].value]) :
+        grp[i].key[0]== 'Nutrition'? nutritionArr.push([grp[i].key[1],grp[i].value]) :
+        grp[i].key[0]== 'Shelter'? shelterArr.push([grp[i].key[1],grp[i].value]) :
+        grp[i].key[0]== 'WASH'? washArr.push([grp[i].key[1],grp[i].value]) : '';
+    }
+    // var keyArr =[]; 
+    // for (var i = 0; i < grpCluster.length; i++) {
+    //     keyArr.push(grpCluster[i].key);
+    // }
+
+    var mapping = {};
+    mapping['foodSecurity'] = {'data': foodSecurityArr, 'title': "Food Security"};
+    mapping['health'] = {'data': healthArr, 'title': "Health"};
+    mapping['nutrition'] = {'data': nutritionArr, 'title': "Nutrition"};
+    mapping['shelter'] = {'data': shelterArr, 'title': "Shelter"};
+    mapping['wash'] = {'data': shelterArr, 'title': "WASH"};
+
+    $('#clusterCharts').html(' ');
+
+    for (k in mapping ){
+        $('#clusterCharts').append('<div class="col-md-4"><h4><img class="img-responsive col-xs-2" src="img/'+k+'.svg">'+mapping[k].title+'</h4><div id="'+k+'"></div></div>');
+        c3.generate({
+            bindto: '#'+k+'',
+            data: {
+                columns: mapping[k].data,
+                type: 'bar'
+            },
+            axis: {
+                y: {
+//                    label: 'Number of people assisted',
+                    show: true,
+                    tick: {
+//                        count:10,
+                        format: formatComma,
+                    }
+                },
+                x: {
+                    show: false
+                }
+            },
+            size: {
+                height: 350
+            },
+            color:{
+                pattern:["#fef0d9","#fdcc8a","#fc8d59","#e34a33","#D32F2F"] //["#edf8e9","#bae4b3","#74c476","#31a354","#006d2c"]
+            },
+            bar: {
+                width: {
+                    ratio: 0.95
+                }
+            }
+        });
+    }
+
+} //end of generateResponseCharts
+
 
 var descriptionCall = $.ajax({ 
     type: 'GET', 
@@ -284,6 +355,7 @@ $.when(descriptionCall, dataCall, geomCall, reachedDataCall).then(function(descA
     var desc = hxlProxyToJSON(descArgs[0]);
     var data = hxlProxyToJSON(dataArgs[0])
     updateDescription(desc);
-    // generateDataTable(reached);
-    generateCharts(data, geom,reached);
+    generateCharts(data, geom);
+    generateResponseCharts(reached);
+
 });
