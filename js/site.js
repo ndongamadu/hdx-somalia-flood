@@ -40,8 +40,8 @@ function print_filter(filter) {
     console.log(filter + "(" + f.length + ") = " + JSON.stringify(f).replace("[", "[\n\t").replace(/}\,/g, "},\n\t").replace("]", "\n]"));
 }
 
-var mapColor = '#D32F2F';
-var barColor = '#CC6869';//'#096DB4';
+var mapColor = '#2965AA';//'#D32F2F';
+var barColor = '#2965AA';//'#CC6869';//'#096DB4';
 var blue = '#096DB4';
 var blueLight = '#72B0E0';
 var green = '#06C0B4';
