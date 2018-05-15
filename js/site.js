@@ -200,14 +200,14 @@ function generateCharts (data, geom) {
     //     });
 
         var totalAffectedAccessor = function(d) { return d.totalAffected ;} ;
-        var totalDisplacedAccessor = function(d) { return d.totalDisplaced ;} ;
+        var totalDisplacedAccessor = function(d) { return parseFloat(d.totalDisplaced) ;} ;
 
     displayTotalAffected
-        .formatNumber(formatComma)
+        .formatNumber(d3.format(',.0f'))
         .group(groupALL)
         .valueAccessor(totalAffectedAccessor);
     displayTotalDisplaced
-        .formatNumber(formatComma)
+        .formatNumber(d3.format(',.0f'))
         .group(groupALL)
         .valueAccessor(totalDisplacedAccessor);
 

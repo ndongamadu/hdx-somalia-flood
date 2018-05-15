@@ -10,11 +10,11 @@ body {
 h3 {
     font-size: 20px;
     text-decoration: underline ;
-    color: #2965AA;
+/*    color: #2965AA;*/
 }
 
 h4 {
-    color: #2965AA;
+/*    color: #2965AA;*/
     text-decoration: underline ;
 }
 .navbar {
@@ -57,12 +57,12 @@ h4 {
 }
 
 .keyfigure {
-    font-size: 20px;
+    font-size: 24px;
     color: #2965AA;
 }
 
 .keyfigureTitle {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 100px;
     /*color: #2965AA;*/
 }
@@ -93,7 +93,7 @@ h4 {
     font-size: 21px;
 }
 a {
-    color: #D32F2F;
+    color: #2965AA;
 }
 .col-xs-3 {
     padding-left: 0px;
@@ -118,15 +118,14 @@ a {
     text-decoration: underline;
 }
 #clusterCharts h4{
-    /*text-align: center;*/
     text-decoration: none;
     font-size: 20x;
-    color:#2965AA;
+/*    color:#2965AA;*/
 }
 
 #clusterCharts col-md-4{
     border-right: 1px solid;
 }
 #clusterSection h4{
-    color:#2965AA;
+/*    color:#2965AA;*/
 }
