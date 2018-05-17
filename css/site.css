@@ -139,10 +139,17 @@ a {
 
 .powered {
     font-size: 12px;
+   
 }
 .panel-default {
     margin-top: 15px;
     background-color: #f4f4f4;
+    height: 35px;
+}
+.panel-body{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    
 }
 .hdx{
     width: 50px;
