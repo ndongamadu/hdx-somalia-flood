@@ -134,8 +134,12 @@ a {
 
 .dataLink {
     font-size: 14px;
+    color: #0077CE;
 }
 
+.powered {
+    font-size: 12px;
+}
 .panel-default {
     margin-top: 15px;
     background-color: #f4f4f4;
