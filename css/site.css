@@ -9,13 +9,12 @@ body {
 
 h3 {
     font-size: 20px;
-    text-decoration: underline ;
-/*    color: #2965AA;*/
+   /* text-decoration: underline ;
+    color: #2965AA;*/
 }
 
 h4 {
-/*    color: #2965AA;*/
-    text-decoration: underline ;
+    font-size: 20px;
 }
 .navbar {
     background-color: #2965AA;
@@ -40,6 +39,7 @@ h4 {
 #map {
     width:100%;
     height: 600px;
+    margin-bottom: 10px;
 }
 
 .hdx-3w-info{
@@ -126,6 +126,41 @@ a {
 #clusterCharts col-md-4{
     border-right: 1px solid;
 }
-#clusterSection h4{
-/*    color:#2965AA;*/
+
+
+#ocha_logo {
+    margin-bottom: 10px;
+}
+
+.dataLink {
+    font-size: 14px;
+}
+
+.panel-default {
+    margin-top: 15px;
+    background-color: #f4f4f4;
+}
+.hdx{
+    width: 50px;
+    display: inline;
+}
+.main {
+    display: none;
+}
+.loader {
+    animation: spin 2s linear infinite;
+    border: 8px solid #f3f3f3; /* Light grey */
+    border-top: 8px solid #3498db; /* Blue */
+    border-radius: 50%;
+    height: 70px;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 70px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

@@ -217,7 +217,8 @@ function generateCharts (data, geom) {
     var bartip = d3.tip().attr('class', 'd3-tip').html(function (d) {
         return d.data.key + ': ' + d3.format('0,000')(d.y);
     });
-    
+    $('.main').show();
+    $('.loader').hide();
     dc.renderAll();
     
     d3.selectAll('g.row').call(rowtip);
@@ -321,7 +322,7 @@ function generateResponseCharts (data) {
                 height: 300
             },
             color:{
-                pattern:['#3F75B0','#D7DCE3','#DFEBF6','#AEB9C8','#A2C2E3','#6FA3EA']//["#fef0d9","#fdcc8a","#fc8d59","#e34a33","#D32F2F"] //["#edf8e9","#bae4b3","#74c476","#31a354","#006d2c"]
+                pattern:['#003268','#026CB6','#6599D1','#95B5DE','#C7D5EE','#DDDDDD']//['#3F75B0','#D7DCE3','#DFEBF6','#AEB9C8','#A2C2E3','#6FA3EA']//["#fef0d9","#fdcc8a","#fc8d59","#e34a33","#D32F2F"] //["#edf8e9","#bae4b3","#74c476","#31a354","#006d2c"]
             },
             bar: {
                 width: {
